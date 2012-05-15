@@ -40,6 +40,10 @@ import org.apache.mahout.common.distance.DistanceMeasure;
 import org.apache.mahout.common.distance.ManhattanDistanceMeasure;
 import org.apache.mahout.math.Vector;
 
+/**
+ * @author 
+ *
+ */
 public class DisplayKMeans extends DisplayClustering {
 
   DisplayKMeans() {
