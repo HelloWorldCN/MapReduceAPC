@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.swjtu.helloworld;
+package org.swjtu.helloworldcn;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

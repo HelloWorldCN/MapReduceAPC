@@ -1,4 +1,4 @@
-package org.swjtu.helloworld;
+package org.swjtu.helloworldcn;
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with

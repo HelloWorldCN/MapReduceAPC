@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.swjtu.helloworld;
+package org.swjtu.helloworldcn;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.PathFilter;
