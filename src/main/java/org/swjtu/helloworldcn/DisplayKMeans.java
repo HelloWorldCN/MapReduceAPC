@@ -44,7 +44,8 @@ import com.google.common.collect.Lists;
 /**
  * @author 
  * 
- *
+ * copy from mahout
+ * test class path
  */
 public class DisplayKMeans extends DisplayClustering {
 
