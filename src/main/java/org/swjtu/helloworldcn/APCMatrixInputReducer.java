@@ -31,6 +31,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Tang
  * @since 2012-3
+ * 输入数据预处理的Reducer
  */
 public class APCMatrixInputReducer
 		extends

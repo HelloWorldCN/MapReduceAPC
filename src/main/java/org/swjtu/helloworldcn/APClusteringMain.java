@@ -9,6 +9,7 @@ import org.apache.mahout.common.AbstractJob;
 /**
  * @author Tang 
  * @since 2012-3
+ * 入口程序
  */
 public class APClusteringMain extends AbstractJob {
 

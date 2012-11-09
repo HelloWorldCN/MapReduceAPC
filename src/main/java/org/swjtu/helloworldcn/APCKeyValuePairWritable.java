@@ -25,6 +25,7 @@ import org.apache.hadoop.io.Writable;
 
 /**
  * This class is a Writable implementation of apc element value
+ * 简单的键值对数据封装
  */
 public class APCKeyValuePairWritable implements Writable {
 

@@ -27,6 +27,7 @@ import org.apache.mahout.math.VectorWritable;
 
 /**
  * Writable to handle serialization of a APCRowVector
+ * 行向量的数据封装类
  */
 public final class APCRowVectorWritable implements Writable {
 

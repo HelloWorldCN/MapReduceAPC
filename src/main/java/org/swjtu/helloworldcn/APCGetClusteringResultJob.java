@@ -37,7 +37,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author Tang 
- * 2012 Get the clustering result
+ * @since 2012 
+ * Get the clustering result
+ * 获取聚类的结果，同时对聚类的结果进行重新规整
  */
 public final class APCGetClusteringResultJob {
 	private static final Logger log = LoggerFactory

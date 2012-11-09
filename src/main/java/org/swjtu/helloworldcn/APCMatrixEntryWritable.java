@@ -15,6 +15,7 @@ import org.apache.hadoop.io.WritableComparable;
  * @since 2012-3
  * 
  * wraper the element value for ap clustering computing
+ * APC矩阵元素的数据封装类
  */
 public class APCMatrixEntryWritable implements
 		WritableComparable<APCMatrixEntryWritable> {

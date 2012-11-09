@@ -25,8 +25,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Tang 2012
+ * @author Tang 
+ * @since 2012-03
  * Compute the preference value from input data
+ * 从数据中获取偏度值
  */
 public final class APCGetMatrixPreference {
 	private static final Logger log = LoggerFactory

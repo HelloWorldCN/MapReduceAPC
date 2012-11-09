@@ -45,6 +45,7 @@ import org.slf4j.LoggerFactory;
  * This class parallel update the responsibility and availability of nodes 
  * @author Tang
  * @since 2012-3
+ * 分布式并行更新数据的A和R
  */
 public final class APCParallelUpdateRAJob {
 

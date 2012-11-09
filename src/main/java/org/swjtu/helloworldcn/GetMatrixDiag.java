@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 /** 
 * @author Tang
 * @since 2012-3
+* 获取矩阵的对角阵
 * */
 public final class GetMatrixDiag {
 	private static final Logger log = LoggerFactory

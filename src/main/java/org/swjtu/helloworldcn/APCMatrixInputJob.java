@@ -32,6 +32,7 @@ import org.apache.mahout.common.HadoopUtil;
  * @author Tang
  * @since 2012-03
  * read input data, and Construct sparse similarity matrix for clustering algorithm 
+ * 对数据进行预处理
  */
 public final class APCMatrixInputJob {
 	public final static String MATRIX_DIMENSIONS = "org.swjtu.helloworldcn.MATRIX_DIMENSIONS";

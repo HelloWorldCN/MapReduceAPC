@@ -28,6 +28,8 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Tang 
  * @since 2012-03
+ * Get result of matrix A's diag plus matrix R's diag
+ * 得到A的对角矩阵加上R的对角阵
  */
 public final class APCGetDiagAplusRJob {
 	private static final Logger log = LoggerFactory

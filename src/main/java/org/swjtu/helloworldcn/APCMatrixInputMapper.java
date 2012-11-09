@@ -36,6 +36,7 @@ import org.slf4j.LoggerFactory;
  * where i and i are the ith and jth data points
  * in the entire set, and value represents some measurement of their
  * relative absolute magnitudes.
+ * 输入数据预处理的Mapper
  */
 public class APCMatrixInputMapper extends
 		Mapper<LongWritable, Text, IntWritable, APCMatrixEntryWritable> {
