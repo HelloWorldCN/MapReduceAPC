@@ -1,0 +1,4 @@
+本代码采用maven方式构建，因此需要先安装maven，然后再采用maven命令构建Eclipse工程来导入代码
+如果您的Eclipse本身已经带了maven的Eclipse插件，那么您也可以直接在Eclipse中导入maven项目的方式导入，maven会自动的帮您构建项目
+
+未完。。。。。。。。。。
