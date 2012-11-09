@@ -26,7 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Tang 2012
+ * @author Tang 
+ * @since 2012-03
  */
 public final class APCGetDiagAplusRJob {
 	private static final Logger log = LoggerFactory

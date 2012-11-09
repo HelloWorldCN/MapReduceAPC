@@ -36,7 +36,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Tang 2012 Get the clustering result
+ * @author Tang 
+ * 2012 Get the clustering result
  */
 public final class APCGetClusteringResultJob {
 	private static final Logger log = LoggerFactory

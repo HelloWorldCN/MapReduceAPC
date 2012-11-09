@@ -39,7 +39,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
  * This class is the job's controller of ap clustering 
  * @author tang
  * @since 2012-3
