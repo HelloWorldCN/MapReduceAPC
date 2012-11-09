@@ -7,6 +7,7 @@ import org.apache.hadoop.util.ToolRunner;
 import org.apache.mahout.common.AbstractJob;
 
 /**
+ * 西南交通大学
  * @author Tang 
  * @since 2012-3
  * 入口程序

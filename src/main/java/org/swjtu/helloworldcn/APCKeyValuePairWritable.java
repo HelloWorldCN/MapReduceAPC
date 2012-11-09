@@ -24,6 +24,7 @@ import java.io.IOException;
 import org.apache.hadoop.io.Writable;
 
 /**
+ * @author Tang 
  * This class is a Writable implementation of apc element value
  * 简单的键值对数据封装
  */

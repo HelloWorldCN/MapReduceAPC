@@ -26,6 +26,7 @@ import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.VectorWritable;
 
 /**
+ * @author Tang
  * Writable to handle serialization of a APCRowVector
  * 行向量的数据封装类
  */

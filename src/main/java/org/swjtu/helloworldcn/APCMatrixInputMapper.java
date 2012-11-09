@@ -28,6 +28,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * @author Tang
  * <p>
  * Handles reading the files representing the similarly matrix.  Each line in all the files
  * should take the form:
