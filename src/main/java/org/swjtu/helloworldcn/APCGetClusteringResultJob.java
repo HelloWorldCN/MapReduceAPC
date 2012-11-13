@@ -30,6 +30,7 @@ import org.apache.mahout.clustering.spectral.common.VectorCache;
 import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.math.DenseVector;
 import org.apache.mahout.math.Vector;
+import org.apache.mahout.math.Vector.Element;
 import org.apache.mahout.math.VectorWritable;
 import org.apache.mahout.math.function.Functions;
 import org.slf4j.Logger;
@@ -84,7 +85,7 @@ public final class APCGetClusteringResultJob {
 		while (reader.next(NullWritable.get(), value)) {
 			ex.add(value.get());
 		}
-		
+		System.out.println("sdfdsfsdfsdfsdf"+ex);
 		
 		conf.setInt(APCMatrixInputJob.MATRIX_DIMENSIONS, dimensions);
 		conf.set(APCGetClusteringResultJob.output_ExemplasPath,
@@ -140,7 +141,8 @@ public final class APCGetClusteringResultJob {
 					maxIndex=i;
 					break;
 				}
-				if (row.getVectorS().get(exemplars.get(i)) > maxValue) {
+				//row.getVectorS().get(exemplars.get(i))!=0 When input matrix is sparse
+				if (row.getVectorS().get(exemplars.get(i))!=0&&row.getVectorS().get(exemplars.get(i)) > maxValue) {
 					maxIndex = i;
 					maxValue = row.getVectorS().get(exemplars.get(i));
 				}
@@ -197,7 +199,7 @@ public final class APCGetClusteringResultJob {
 					maxIndex=i;
 					break;
 				}
-				if (row.getVectorS().get(exemplars.get(i)) > maxValue) {
+				if (row.getVectorS().get(exemplars.get(i))!=0&&row.getVectorS().get(exemplars.get(i)) > maxValue) {
 					maxIndex = i;
 					maxValue = row.getVectorS().get(exemplars.get(i));
 				}
@@ -240,27 +242,38 @@ public final class APCGetClusteringResultJob {
 		protected void reduce(IntWritable key,
 				Iterable<APCResultRowWritable> values, Context context)
 				throws IOException, InterruptedException {
-			Vector retval = new DenseVector(context.getConfiguration().getInt(
+			Vector sumValByCol = new DenseVector(context.getConfiguration().getInt(
 					APCMatrixInputJob.MATRIX_DIMENSIONS, Integer.MAX_VALUE));
-			
+			Vector notZeroValueCountByColIndex = new DenseVector(context.getConfiguration().getInt(
+					APCMatrixInputJob.MATRIX_DIMENSIONS, Integer.MAX_VALUE));
+			notZeroValueCountByColIndex.assign(0.0);
 			ArrayList<Integer> elementIndex=new ArrayList<Integer>();
-			
 			for (APCResultRowWritable e : values) {
 				if (elementIndex.isEmpty()) {
-					retval.assign(e.getVectorS());
+					sumValByCol.assign(e.getVectorS());
 				}else {
-					retval.assign(e.getVectorS(), Functions.PLUS);
+					sumValByCol.assign(e.getVectorS(), Functions.PLUS);
 				}
 				elementIndex.add(e.getKey());
-			}
-			int maxIndex=0;
-			double maxValue = -Double.MAX_VALUE;
-			for (Integer val : elementIndex) {
-				if (retval.getQuick(val)>maxValue) {
-					maxIndex=val;
-					maxValue=retval.getQuick(val);
+				//Just for sparse data
+				Iterator<Element> itera = e.getVectorS().iterateNonZero();
+				while (itera.hasNext()) {
+					Element element = itera.next();
+					int i=element.index();
+					notZeroValueCountByColIndex.setQuick(i, notZeroValueCountByColIndex.getQuick(i)+1);
 				}
 			}
+			System.out.println("tang test"+elementIndex);
+			System.out.println("tang test"+notZeroValueCountByColIndex);
+			int maxIndex=key.get();//default is old examplar
+			double maxValue = -Double.MAX_VALUE;
+			for (Integer val : elementIndex) {
+				if (sumValByCol.getQuick(val)!=0&&notZeroValueCountByColIndex.getQuick(val)==elementIndex.size()&&sumValByCol.getQuick(val)>maxValue) {
+					maxIndex=val;
+					maxValue=sumValByCol.getQuick(val);
+				}
+			}			
+			
 			// write it out
 			context.write(NullWritable.get(), new IntWritable(maxIndex));
 		}
