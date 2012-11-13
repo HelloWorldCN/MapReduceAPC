@@ -85,7 +85,6 @@ public final class APCGetClusteringResultJob {
 		while (reader.next(NullWritable.get(), value)) {
 			ex.add(value.get());
 		}
-		System.out.println("sdfdsfsdfsdfsdf"+ex);
 		
 		conf.setInt(APCMatrixInputJob.MATRIX_DIMENSIONS, dimensions);
 		conf.set(APCGetClusteringResultJob.output_ExemplasPath,
@@ -118,7 +117,7 @@ public final class APCGetClusteringResultJob {
 			Integer val = (Integer) iterator.next();
 			vt.setQuick(val, val);			
 		}*/
-		System.out.println("clustering result idx:" + vt);
+		//System.out.println("clustering result idx:" + vt);
 
 		// read the results back from the path
 		return vt;
@@ -263,8 +262,7 @@ public final class APCGetClusteringResultJob {
 					notZeroValueCountByColIndex.setQuick(i, notZeroValueCountByColIndex.getQuick(i)+1);
 				}
 			}
-			System.out.println("tang test"+elementIndex);
-			System.out.println("tang test"+notZeroValueCountByColIndex);
+
 			int maxIndex=key.get();//default is old examplar
 			double maxValue = -Double.MAX_VALUE;
 			for (Integer val : elementIndex) {

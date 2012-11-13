@@ -317,7 +317,6 @@ public class APCDriver extends AbstractJob {
 					RandomAccessSparseVector v = iterator.next();
 					se=(RandomAccessSparseVector) se.plus(v);
 				}
-				System.out.println("se"+se);
 				iter = se.iterateNonZero();
 				while (iter.hasNext()) {
 					Element element = iter.next();
