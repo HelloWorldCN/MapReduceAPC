@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author Tang 
- * @since 2012 
+ * @since 2012-03 
  * Get the clustering result
  * 获取聚类的结果，同时对聚类的结果进行重新规整
  */
@@ -129,7 +129,7 @@ public final class APCGetClusteringResultJob {
 
 		private int colnums;
 		ArrayList<Integer> exemplars = new ArrayList<Integer>();
-
+		//Identify the cluster represented by examplar
 		@Override
 		protected void map(IntWritable key, APCRowVectorWritable row,
 				Context context) throws IOException, InterruptedException {
@@ -236,15 +236,16 @@ public final class APCGetClusteringResultJob {
 	public static class APCGetClusteringResultReducer1
 			extends
 			Reducer<IntWritable, APCResultRowWritable, NullWritable, IntWritable> {
-
+		//Refine the examplar in cluster
 		@Override
 		protected void reduce(IntWritable key,
 				Iterable<APCResultRowWritable> values, Context context)
 				throws IOException, InterruptedException {
 			Vector sumValByCol = new DenseVector(context.getConfiguration().getInt(
 					APCMatrixInputJob.MATRIX_DIMENSIONS, Integer.MAX_VALUE));
+			//notZeroValueCountByColIndex用于统计同列数据中非零的个数
 			Vector notZeroValueCountByColIndex = new DenseVector(context.getConfiguration().getInt(
-					APCMatrixInputJob.MATRIX_DIMENSIONS, Integer.MAX_VALUE));
+					APCMatrixInputJob.MATRIX_DIMENSIONS, Integer.MAX_VALUE));//Just for sparse data,count the number of not zero value items in each column
 			notZeroValueCountByColIndex.assign(0.0);
 			ArrayList<Integer> elementIndex=new ArrayList<Integer>();
 			for (APCResultRowWritable e : values) {
@@ -263,7 +264,7 @@ public final class APCGetClusteringResultJob {
 				}
 			}
 
-			int maxIndex=key.get();//default is old examplar
+			int maxIndex=key.get();//default is old examplar，默认即为旧的examplar
 			double maxValue = -Double.MAX_VALUE;
 			for (Integer val : elementIndex) {
 				if (sumValByCol.getQuick(val)!=0&&notZeroValueCountByColIndex.getQuick(val)==elementIndex.size()&&sumValByCol.getQuick(val)>maxValue) {
