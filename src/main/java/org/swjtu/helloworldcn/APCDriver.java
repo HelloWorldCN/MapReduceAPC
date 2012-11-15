@@ -275,7 +275,7 @@ public class APCDriver extends AbstractJob {
 			inputPath=APCParallelUpdateRAJob.runJob(inputPath, outputPath,  numDims,lamda);
 			
 			diagAplusR=APCGetDiagAplusRJob.runJob(inputPath, numDims);
-			System.out.println("diag"+diagAplusR);
+			//System.out.println("diag"+diagAplusR);
 			RandomAccessSparseVector E=new RandomAccessSparseVector(numDims, 100);
 			//RandomAccessSparseVector E = new RandomAccessSparseVector(diagAplusR);
 			Iterator<Element> iter = diagAplusR.iterateNonZero();
@@ -305,7 +305,7 @@ public class APCDriver extends AbstractJob {
 			}
 			
 			e.add(index, E);
-			System.out.println(e);
+			//System.out.println(e);
 			
 
 			//double K = E.zSum();

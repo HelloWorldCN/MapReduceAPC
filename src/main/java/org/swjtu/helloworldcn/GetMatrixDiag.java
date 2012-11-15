@@ -62,8 +62,7 @@ public final class GetMatrixDiag {
 		job.waitForCompletion(true);
 		Vector vt = VectorCache
 				.load(conf, new Path(diagOutput, "part-r-00000"));
-		System.out.println("sum is" + vt.size());
-		System.out.println(vt);
+
 
 		// read the results back from the path
 		return vt;
@@ -76,7 +75,6 @@ public final class GetMatrixDiag {
 		@Override
 		protected void map(IntWritable key, VectorWritable row, Context context)
 				throws IOException, InterruptedException {
-			System.out.print("hang shu ju"+row.get());
 			// store the sum
 			IntDoublePairWritable store = new IntDoublePairWritable(key.get(),
 					row.get().getQuick(key.get()));

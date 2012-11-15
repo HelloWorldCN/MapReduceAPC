@@ -145,7 +145,6 @@ public final class ComputeAvailabilitiesJob {
 		@Override
 		protected void map(IntWritable key, VectorWritable row, Context ctx)
 				throws IOException, InterruptedException {
-			System.out.println("XXXXXXXXXXXXXXXXXXXXXXX A ji suan hang shuju");
 			Vector aVector=row.get();
 			int rownum=key.get();
 			Vector strowVector=null;
@@ -209,7 +208,6 @@ public final class ComputeAvailabilitiesJob {
             aVector=aVector.times(1-0.5).plus(row.get().times(0.5));
             row.set(aVector);
             
-            System.out.println("XXXXXXXXXXXXXXXXXXXXXXX xie ru shu ju"+aVector);
 			ctx.write(key, row);
 		}
 
