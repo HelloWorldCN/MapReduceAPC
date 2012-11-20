@@ -25,7 +25,7 @@ hadoop jar /root/test/APCH.jar org.swjtu.helloworldcn.APClusteringMain --input m
 --nonoise 数据是否包含小的噪声
 
 
-第一部分 采用源码自己编译
+第二部分 采用源码自己编译
 （1）确定已经安装maven，eclipse，maven eclipse插件
 （2）采用maven导入项目，自动构建相应依赖的包并配置eclipse工程
 （3）如果您的Eclipse本身已经带了maven的Eclipse插件，那么您也可以直接在Eclipse中导入maven项目的方式导入，maven会自动的帮您构建项目
