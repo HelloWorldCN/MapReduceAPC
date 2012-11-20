@@ -1,7 +1,37 @@
-本代码采用maven方式构建，因此需要先安装maven，然后再采用maven命令构建Eclipse工程来导入代码
-如果您的Eclipse本身已经带了maven的Eclipse插件，那么您也可以直接在Eclipse中导入maven项目的方式导入，maven会自动的帮您构建项目
+-------------用户使用手册-----------------
 
-未完。。。。。。。。。。
+第一部分 直接使用已经编译好的jar文件
+在使用前要首先确定你已经安装部署好你自己的hadoop计算集群，并且你所在工作终端已经接入集群。
+（1）那么接下来首先从binary目录下载APCH.jar文件到本机，下面假设你把文件放在 /root/test/APCH.jar
+（2）准备自己的相似数据，并采用三元组的方式按行依次存储，假设生成的文件名为testdata.txt
+（3）打开Linux 终端
+（4）将刚才生成的文件上传到hadoop 的hdfs中，在终端中执行下面两步命令
+		首先创建一个目录
+		hadoop fs -mkdir mytest
+		接下来将文件上传
+        hadoop fs -copyFromLocal /root/testdata.txt mytest/
+	注意如果您的hadoop所在的bin目录没有加入到系统环境目录，那么需要先到hadoop所在bin目录执行才可以
+（5）进行聚类分析，在终端中执行下面命令提交作业到hadoop
+hadoop jar /root/test/APCH.jar org.swjtu.helloworldcn.APClusteringMain --input mytest --output testoutput --dimensions 10 --maxIter 1000 --dampfact 0.9 --convits 100 --preference -0.5524 --nonoise 1
+
+参数解释
+--input 输入相似数据所在的目录
+--dimensions 数据点的个数
+--output 聚类结果输出的目录
+--maxIter 最大迭代次数
+--dampfact 震荡因子
+--convits 数据不变的次数
+--preference 偏度，如果不指定那么将计算获得
+--nonoise 数据是否包含小的噪声
+
+
+第一部分 采用源码自己编译
+（1）确定已经安装maven，eclipse，maven eclipse插件
+（2）采用maven导入项目，自动构建相应依赖的包并配置eclipse工程
+（3）如果您的Eclipse本身已经带了maven的Eclipse插件，那么您也可以直接在Eclipse中导入maven项目的方式导入，maven会自动的帮您构建项目
+（4）可以用maven打包编译，也可以自己用export方式打包为jar文件
+
+
 
 西南交通大学
 唐

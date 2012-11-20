@@ -28,10 +28,8 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.SequenceFile;
 import org.apache.mahout.common.AbstractJob;
-import org.apache.mahout.common.ClassUtils;
 import org.apache.mahout.common.HadoopUtil;
 import org.apache.mahout.common.commandline.DefaultOptionCreator;
-import org.apache.mahout.common.distance.DistanceMeasure;
 import org.apache.mahout.math.RandomAccessSparseVector;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.Vector.Element;
@@ -70,7 +68,7 @@ public class APCDriver extends AbstractJob {
 		addOutputOption();
 		addOption("dimensions", "d", "Square dimensions of affinity matrix",
 				true);
-		addOption(DefaultOptionCreator.distanceMeasureOption().create());
+		//addOption(DefaultOptionCreator.distanceMeasureOption().create());
 		addOption(DefaultOptionCreator.maxIterationsOption().create());
 		addOption(
 				"inputdatatype",
@@ -110,9 +108,8 @@ public class APCDriver extends AbstractJob {
 		HadoopUtil.delete(conf, output);
 		// }
 		numDims = Integer.parseInt(parsedArgs.get("--dimensions"));
-		String measureClass = getOption(DefaultOptionCreator.DISTANCE_MEASURE_OPTION);
-		DistanceMeasure measure = ClassUtils.instantiateAs(measureClass,
-				DistanceMeasure.class);
+		/*String measureClass = getOption(DefaultOptionCreator.DISTANCE_MEASURE_OPTION);
+		DistanceMeasure measure = ClassUtils.instantiateAs(measureClass,DistanceMeasure.class);*/
 
 		maxIterations = Integer
 				.parseInt(getOption(DefaultOptionCreator.MAX_ITERATIONS_OPTION));
@@ -123,7 +120,7 @@ public class APCDriver extends AbstractJob {
 		double preference = Double.parseDouble(parsedArgs.get("--preference"));
 		int inputDataType=Integer.parseInt(parsedArgs.get("--inputdatatype"));
 		e=new ArrayList<RandomAccessSparseVector>(convits);
-		run(conf, input, output, numDims, preference,inputDataType, measure, lamda,
+		run(conf, input, output, numDims, preference,inputDataType, lamda,
 				maxIterations);
 
 		return 0;
@@ -157,7 +154,7 @@ public class APCDriver extends AbstractJob {
 	 *            calculations
 	 */
 	public void run(Configuration conf, Path input, Path output, int numDims,
-			 double preference, int inputDataType,DistanceMeasure measure,
+			 double preference, int inputDataType,
 			double lamda, int maxIterations) throws IOException,
 			InterruptedException, ClassNotFoundException {
 		// create a few new Paths for temp files and transformations
